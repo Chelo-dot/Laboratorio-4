@@ -8,12 +8,17 @@ void findLargestLine(int **matrix, int size, int *result){
 
 void allocateMatrix(int ***matrix, int size){
 
+    *matrix = (int **)malloc( size * sizeof(int*) );
+
+    for(int i = 0; i < size; i++){
+        *(*matrix + i) = (int *)malloc(size * sizeof(int));
+    }
 
 }
 
 void fillMatrix(int **matrix, int size){
 
-    // General matriz random
+    // Generar matriz random
 
     for(int i = 0; i < size; i ++){
         for(int j = 0; j < size; j++){
@@ -25,13 +30,7 @@ void fillMatrix(int **matrix, int size){
 
 void printMatrix(int **matrix, int size){
     printf("Matriz (%dx%d) \n", size, size);
-
-    for (int i = 0; i < size * size; i++){
-        printf("%d", *(*matrix + i));
-
-
-    }
-            printf("\n");
+    
     
     
     for (int i = 0; i < size; i ++){
