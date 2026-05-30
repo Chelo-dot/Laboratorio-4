@@ -4,6 +4,25 @@
 
 void findLargestLine(int **matrix, int size, int *result){
 
+    int unos = 1;
+    int anterior = 0;
+    for(int i = 0; i < size; i++){
+        for(int j = 0; j < size; j++){
+
+            if (*(*(matrix + i) + j) == 1 && anterior){
+                unos ++;
+                if (unos > *result) *result = unos;
+            }
+
+            else if(*(*(matrix + i) + j) == 1) anterior = 1;
+            
+            else {
+                anterior = 0;
+                unos = 1;
+            }
+        }
+    }
+
 }
 
 void allocateMatrix(int ***matrix, int size){
@@ -38,6 +57,8 @@ void printMatrix(int **matrix, int size){
             printf("%d", *(*(matrix + i) + j));
         }
 
+    printf("\n");
+
     
     }
 }
@@ -56,6 +77,7 @@ int main(void){
 
     int size, largestLine;
     int **matrix = NULL;
+    largestLine = 1; 
 
     size = 4;
 
@@ -65,9 +87,11 @@ int main(void){
 
     printMatrix(matrix, size);
 
+    findLargestLine(matrix, size, &largestLine);
+
     freeMatrix(matrix, size);
-
-
+    
+    printf("El tamaño de la secuencia de 1s mas grande es: %d\n",largestLine);
 
     return 0;
 }
