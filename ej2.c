@@ -6,7 +6,7 @@ unsigned char *read_pgm(const char *filename, int *width, int *height, int *max_
     unsigned char *pixels;
 
     FILE *archivo;
-    archivo = fopen("/home/chelo/Plataformas/Laboratorio-4/imagen.pgm", "r");
+    archivo = fopen("imagen.pgm", "r");
 
 
     // verifica que el archivo exista
@@ -66,7 +66,7 @@ unsigned char *make_negative(unsigned char *pixels, int total){
 
 void write_pgm(const char *filename, unsigned char *pixels, int width, int height, int max_val){
 
-    FILE *archivo = fopen("negative.pgm", "w");
+    FILE *archivo = fopen(filename, "w");
 
     if (archivo == NULL) return;
 
@@ -87,23 +87,25 @@ void print_stats(unsigned char *original, unsigned char *thresholded, int total)
 
 int main(void){
 
-    char *filename = "imagen.pgm";
+    const char *filename = "imagen.pgm";
 
     int width, height, max_val, threshold;
     unsigned char *pixels = NULL;
     unsigned char *negative = NULL;
 
-    pixels = read_pgm("imagen.pgm", &width, &height, &max_val);
+    pixels = read_pgm(filename, &width, &height, &max_val);
 
     int total = width*height;
 
     negative = make_negative(pixels, total);
-    
-    apply_threshold(pixels, total, 75);
 
 
-    write_pgm("threshold.pgm", negative, width, height, max_val);
+    printf("Ingrese el valor del threshold que desea aplicar: ");
+    scanf("%i", &threshold);
+    apply_threshold(pixels, total, threshold);
 
+    write_pgm("threshold.pgm", pixels, width, height, max_val);
+    write_pgm("negative.pgm", negative, width, height, max_val);
 
 
 
