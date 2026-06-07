@@ -79,7 +79,8 @@ int main(void){
     int **matrix = NULL;
     largestLine = 1; 
 
-    size = 4;
+    printf("Ingrese el tamanoo de la matriz:");
+    scanf("%d", &size);
 
     allocateMatrix(&matrix, size);
 
@@ -91,7 +92,7 @@ int main(void){
 
     freeMatrix(matrix, size);
     
-    printf("El tamaño de la secuencia de 1s mas grande es: %d\n",largestLine);
+    printf("El tamanoo de la secuencia de 1s mas grande es: %d\n",largestLine);
 
     return 0;
 }

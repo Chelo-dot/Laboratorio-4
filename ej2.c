@@ -14,8 +14,8 @@ unsigned char *read_pgm(const char *filename, int *width, int *height, int *max_
 
     fscanf(archivo, "%*[^\n]\n");
 
-    //Se salta una segunda linea en caso de comentarios
-    fscanf(archivo, "%*[^\n]\n");
+    // Se salta una segunda linea en caso de comentarios
+    // fscanf(archivo, "%*[^\n]\n");
 
 
     // lee el tamano de la imagen
